@@ -25,15 +25,18 @@
 		this.border = $e.outerHeight() - $e.innerHeight();
 		try { margin = typeof margin == 'undefined' ? 0 : parseInt(margin); } catch(ex) { margin = 0; }
 		this.margin = margin;
-		this.clone = $e.clone().css({position: 'absolute', visibility: 'hidden'}).attr('name', '')
+		this.clone = $e.clone().css({position: 'absolute', visibility: 'hidden'})
+			.attr('name', '').attr('id', '');
 		$e.height(e.scrollHeight + this.border)
 			.after(this.clone);
-		this.checkExpand(); };
+		this.checkExpand();
+	};
 
 	jQuery.simpleautogrow.prototype.checkExpand = function() {
 		var target_height = this.clone[0].scrollHeight + this.border + this.margin;
 		if (this.textarea.outerHeight() != target_height)
 			this.textarea.height(target_height + 'px');
-		this.clone.attr('value', this.textarea.attr('value')).height(0); };
+		this.clone.attr('value', this.textarea.attr('value')).height(0);
+	};
 
 })(jQuery);
